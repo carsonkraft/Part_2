@@ -1,0 +1,25 @@
+{
+  "name": "part_2",
+  "version": "1.0.0",
+  "description": "Marvel database search",
+  "main": "index.html",
+  "directories": {
+    "doc": "doc"
+  },
+  "scripts": {
+    "test": "hello"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/carsonkraft/Part_2.git"
+  },
+  "author": "Carson",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/carsonkraft/Part_2/issues"
+  },
+  "homepage": "https://github.com/carsonkraft/Part_2#readme",
+  "dependencies": {
+    "jquery": "^3.3.1"
+  }
+}
