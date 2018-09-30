@@ -1,24 +1,24 @@
 var PUBLIC = config.PUBLIC_KEY;
 var PRIV = config.PRIV_KEY;
 
-function getMarvelResponse() {
+// skeleton code credit: https://gist.github.com/SiddharthaSarma/eb3f6fb19717fcf84199eda81243bafc
+function getMarvelResponse(query_title, query_year, query_format) {
 
-  // you need a new ts every request
   var ts = new Date().getTime();
   var hash = CryptoJS.MD5(ts + PRIV + PUBLIC).toString();
 
-  // the api deals a lot in ids rather than just the strings you want to use
-  var characterId = '1009718'; // wolverine
+  var characterId = '1009718';
 
 
   var url = 'http://gateway.marvel.com:80/v1/public/comics';
 
-  console.log(url);
   $.getJSON(url, {
     ts: ts,
     hash: hash,
     apikey: PUBLIC,
-    characters: characterId
+    titleStartsWith: query_title,
+    startYear: query_year,
+    format: query_format
     })
     .done(function(data) {
       // sort of a long dump you will need to sort through
@@ -30,4 +30,4 @@ function getMarvelResponse() {
     });
 };
 
-getMarvelResponse();
+getMarvelResponse('The', 1992, 'comic');
