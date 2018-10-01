@@ -44,12 +44,13 @@
               <small id="titleHelp" class="form-text text-muted">Enter a comic title or beginning of title</small>
             </div>
 
-            <div class="form-group">
+          <div class="row" id="form-row">
+            <div class="col">
               <input class="form-control" id="query_year" placeholder="Start Year">
-              <small id="titleHelp" class="form-text text-muted">Enter the start year of a series (ex. 1990)</small>
+              <small id="titleHelp" class="form-text text-muted">Enter a series start year</small>
             </div>
 
-            <div class="form-group">
+            <div class="col">
               <select class="form-control" id="query_format">
                 <option value="">Choose a format</option>
                 <option value="comic">Comic</option>
@@ -62,12 +63,17 @@
                 <option value="infinite comic">Infinite Comic</option>
               </select>
             </div>
-            <div class="form-group">
-              <select class="form-control" id="query_sort">
+          </div>
+
+          <div class="form-group row">
+            <label for="colFormLabel" class="col-sm-2 col-form-label" id="sort-label">Sort by:</label>
+            <div class="col-sm-10">
+            <select class="form-control" id="query_sort">
                 <option value="">Default</option>
                 <option value="title">Title</option>
                 <option value="issueNumber">Issue Number</option>
-              </select>
+            </select>
+          </div>
             </div>
             <button type="submit" class="btn btn-primary">Search</button>
           </form>
