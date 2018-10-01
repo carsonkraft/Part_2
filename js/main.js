@@ -81,7 +81,10 @@ function findComics(query_year, query_title, query_format, query_sort) {
       output += "</div>"
 
       //location.reload(true);
-      $('#search-container').append(output);
+      $('#search-container').append(output + '<nav aria-label="Page navigation example"><ul class="pagination justify-content-center"><li class="page-item disabled">'
+      + '<a class="page-link" href="#" tabindex="-1">Previous</a></li><li class="page-item"><a class="page-link" href="#">1</a></li>'
+    + '<li class="page-item"><a class="page-link" href="#">2</a></li><li class="page-item"><a class="page-link" href="#">3</a></li>'
+    + '<li class="page-item"><a class="page-link" href="#">Next</a></li></ul></nav>');
 
     })
     .fail(function(err){
@@ -95,8 +98,25 @@ function findComics(query_year, query_title, query_format, query_sort) {
  $(document).ready(function() {
   document.getElementById('searchMarvel').addEventListener('submit', function (e) {
     e.preventDefault(); //prevent a submit button from submitting a form.
-        findComics(document.getElementById('query_year').value,
-        document.getElementById('query_title').value, document.getElementById('query_format').value,
-        document.getElementById('query_sort').value);
+        var year = document.getElementById('query_year').value;
+        var title = document.getElementById('query_title').value;
+        var format = document.getElementById('query_format').value;
+        var sort = document.getElementById('query_sort').value;
+
+        //append URL with queries
+        window.location.search += '&query_year=' + year + '&query_title=' +
+        title + '&query_format=' + format + '&query_sort=' + sort;
+
+        var searchArray = window.location.search.split('&');
+
+      //  query_year = searchArray[0].split('=')[1];
+        //query_title = searchArray[1].split('=')[1];
+        //query_format = searchArray[2].split('=')[1];
+        //query_sort = searchArray[3].split('=')[1];
+
+        //findComics(document.getElementById('query_year').value,
+        //document.getElementById('query_title').value,
+      //  document.getElementById('query_format').value,
+      //  document.getElementById('query_sort').value);
 }, false);
 });
