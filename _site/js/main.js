@@ -213,7 +213,14 @@ function findComics(query_year, query_title, query_format, query_sort, query_off
         for(i = 0; i < ((response.data.count / 10)); i++){
 
           var searchParams = new URLSearchParams(window.location.search);
-          searchParams.set("query_offset", 9);
+          if(i > 0){
+            var offNum = (i*10) - 1;
+          }
+          else {
+            offNum = 0;
+          }
+
+          searchParams.set("query_offset", offNum);
           var link = searchParams.toString();
 
           console.log(link);
