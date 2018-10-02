@@ -4,7 +4,7 @@ var PRIV = config.PRIV_KEY;
 //findCharacter returns character card html
 function findCharacter(charactersURI, is3) {
 
-  console.log("hello");
+  //console.log("hello");
   var ts1 = new Date().getTime();
   var hash1 = CryptoJS.MD5(ts1 + PRIV + PUBLIC).toString();
 
@@ -20,91 +20,121 @@ function findCharacter(charactersURI, is3) {
 
   $.getJSON(url1, obj1)
     .done(function(out) {
-      console.log(out.data.results);
+    //  console.log(out);
       //console.log(character);
       var output1 = '';
 
     //first one
-    if(is3 == 0){
-      //console.log("0")
+    if(is3 < 3){
+      console.log("0")
       if(out.data.results.length == 0){
         //no characters in given comic
-        $('#search-container').append('<div class="row"><div class="col-sm"><img height:200px style="box-sizing:border-box;height:200px;"'+
+        $('#1').append('<div class="col-sm"><img height:200px style="box-sizing:border-box;height:200px;"'+
         'src="http://getdrawings.com/img/superhero-silhouette-images-30.png"><br>No characters found</div>');
       }
-      else if (!thumbnail) {
+      else if (path == '') {
         var character = out.data.results[0].name;
-        var thumbnail = out.data.results[0].thumbnail;
+        var path = out.data.results[0].thumbnail.path;
         var description = out.data.results[0].description;
+        var ext = out.data.results[0].thumbnail.extension;
 
-        $('#search-container').append('<div class="row"><div class="col-sm"><img height:200px style="box-sizing:border-box;height:200px;"'+
+        $('#1').append('<div class="col-sm"><img height:200px style="box-sizing:border-box;height:200px;"'+
         'src="http://getdrawings.com/img/superhero-silhouette-images-30.png"><br>' + character
           + '<br>'+ description + '</div>');
 
       }
       else{
         var character = out.data.results[0].name;
-        var thumbnail = out.data.results[0].thumbnail;
+        var path = out.data.results[0].thumbnail.path;
         var description = out.data.results[0].description;
+        var ext = out.data.results[0].thumbnail.extension;
 
-              $('#search-container').append('<div class="row"><div class="col-sm"><img src="' +
-                thumbnail + '"><br>'+ name + '<br>' + description + '</div>');
+              $('#1').append('<div class="col-sm"><img src="' +
+                path + '/portrait_medium.' + ext + '"><br>'+ name + '<br>' + description + '</div>');
       }
     }
-
-    // divisible by 3
-    else if(is3 == 3){
-      //console.log("3");
+    else if(is3 > 2 && is3 < 6){
+      console.log("3");
       if(out.data.results.length == 0){
         //no characters in given comic
-        $('#search-container').append('</div><div class="row"><div class="col-sm"><img height:200px style="box-sizing:border-box;height:200px;"'+
+        $('#2').append('<div class="col-sm"><img height:200px style="box-sizing:border-box;height:200px;"'+
         'src="http://getdrawings.com/img/superhero-silhouette-images-30.png"><br>No characters found</div>');
       }
-      else if (!thumbnail) {
+      else if (path == '') {
         var character = out.data.results[0].name;
-        var thumbnail = out.data.results[0].thumbnail;
+        var path = out.data.results[0].thumbnail.path;
         var description = out.data.results[0].description;
+        var ext = out.data.results[0].thumbnail.extension;
 
-        $('#search-container').append('</div><div class="row"><div class="col-sm"><img height:200px style="box-sizing:border-box;height:200px;"'+
+        $('#2').append('<div class="col-sm"><img height:200px style="box-sizing:border-box;height:200px;"'+
         'src="http://getdrawings.com/img/superhero-silhouette-images-30.png"><br>' + character
           + '<br>'+ description + '</div>');
 
       }
       else{
         var character = out.data.results[0].name;
-        var thumbnail = out.data.results[0].thumbnail;
+        var path = out.data.results[0].thumbnail.path;
         var description = out.data.results[0].description;
+        var ext = out.data.results[0].thumbnail.extension;
 
-              $('#search-container').append('</div><div class="row"><div class="col-sm"><img src="' +
-                thumbnail + '"><br>'+ name + '<br>' + description + '</div>');
+              $('#2').append('<div class="col-sm"><img src="' +
+                path + '/portrait_medium.' + ext + '"><br>'+ name + '<br>' + description + '</div>');
       }
     }
-
-    //not divisible by 3
-    else if(is3 == 1){
-      //console.log("1");
+    else if(is3 > 5 && is3 < 9){
+      console.log("1");
       if(out.data.results.length == 0){
         //no characters in given comic
-        $('#search-container').append('<div class="col-sm"><img height:200px style="box-sizing:border-box;height:200px;"'+
+        $('#3').append('<div class="col-sm"><img height:200px style="box-sizing:border-box;height:200px;"'+
         'src="http://getdrawings.com/img/superhero-silhouette-images-30.png"><br>No characters found</div>');
       }
-      else if (!thumbnail) {
+      else if (path == '') {
         var character = out.data.results[0].name;
-        var thumbnail = out.data.results[0].thumbnail;
+        var path = out.data.results[0].thumbnail.path;
         var description = out.data.results[0].description;
+        var ext = out.data.results[0].thumbnail.extension;
 
-        $('#search-container').append('<div class="col-sm"><img height:200px style="box-sizing:border-box;height:200px;"'+
+        $('#3').append('<div class="col-sm"><img height:200px style="box-sizing:border-box;height:200px;"'+
         'src="http://getdrawings.com/img/superhero-silhouette-images-30.png"><br>' + character
           + '<br>'+ description + '</div>');
 
       }
       else{
         var character = out.data.results[0].name;
-        var thumbnail = out.data.results[0].thumbnail;
+        var path = out.data.results[0].thumbnail.path;
         var description = out.data.results[0].description;
+        var ext = out.data.results[0].thumbnail.extension;
 
-              $('#search-container').append('<div class="col-sm"><img src="' +
-                thumbnail + '"><br>'+ name + '<br>' + description + '</div>');
+              $('#3').append('<div class="col-sm"><img src="' +
+                path + '/portrait_medium.' + ext + '"><br>'+ name + '<br>' + description + '</div>');
+      }
+    }
+    else if(is3 == 9){
+      console.log("1");
+      if(out.data.results.length == 0){
+        //no characters in given comic
+        $('#4').append('<div class="col-sm"><img height:200px style="box-sizing:border-box;height:200px;"'+
+        'src="http://getdrawings.com/img/superhero-silhouette-images-30.png"><br>No characters found</div>');
+      }
+      else if (path == '') {
+        var character = out.data.results[0].name;
+        var path = out.data.results[0].thumbnail.path;
+        var description = out.data.results[0].description;
+        var ext = out.data.results[0].thumbnail.extension;
+
+        $('#4').append('<div class="col-sm"><img height:200px style="box-sizing:border-box;height:200px;"'+
+        'src="http://getdrawings.com/img/superhero-silhouette-images-30.png"><br>' + character
+          + '<br>'+ description + '</div>');
+
+      }
+      else{
+        var character = out.data.results[0].name;
+        var path = out.data.results[0].thumbnail.path;
+        var description = out.data.results[0].description;
+        var ext = out.data.results[0].thumbnail.extension;
+
+              $('#4').append('<div class="col-sm"><img src="' +
+                path + '/portrait_medium.' + ext + '"><br>'+ name + '<br>' + description + '</div>');
       }
     }
 
@@ -146,38 +176,38 @@ function findComics(query_year, query_title, query_format, query_sort) {
 
   $.getJSON(url, obj)
     .done(function(response) {
-      console.log(response);
+      //console.log(response);
       var results = response.data.results;
       var output = '<div class="container">';
 
       if(response.data.count == 0){
-        console.log("nothing found");
+      //  console.log("nothing found");
         $('#search-container').append('<p> No results found for your query. Please try again! </p>');
       }
       else{
 
-        console.log("things found");
+        //console.log("things found");
 
         for(i = 0; i < results.length; i++){
         //  console.log("getting cards");
         //  console.log(characters.collectionURI);
             if(i == 0){
-              console.log('0');
-              findCharacter(results[i].characters.collectionURI, 0);
+              //console.log('0');
+              findCharacter(results[i].characters.collectionURI, i);
             }
             else if(i % 3 == 0){
-              console.log('3');
-              findCharacter(results[i].characters.collectionURI, 3);
+            //  console.log('3');
+              findCharacter(results[i].characters.collectionURI, i);
             }
             else{
-              console.log('1');
-              findCharacter(results[i].characters.collectionURI, 1);
+            //  console.log('1');
+              findCharacter(results[i].characters.collectionURI, i);
             }
-            console.log(output);
+          //  console.log(output);
        }
       }
 
-      $('#search-container').append('</div><nav aria-label="Page navigation example"><ul class="pagination justify-content-center"><li class="page-item disabled">'
+      $('#search-results').append('</div><nav aria-label="Page navigation example"><ul class="pagination justify-content-center"><li class="page-item disabled">'
       + '<a class="page-link" href="#" tabindex="-1">Previous</a></li><li class="page-item"><a class="page-link" href="#">1</a></li>'
       + '<li class="page-item"><a class="page-link" href="#">2</a></li><li class="page-item"><a class="page-link" href="#">3</a></li>'
       + '<li class="page-item"><a class="page-link" href="#">Next</a></li></ul></nav>');
