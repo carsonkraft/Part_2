@@ -4,7 +4,7 @@ var PRIV = config.PRIV_KEY;
 //findCharacter returns character card html
 function findCharacter(charactersURI, is3) {
 
-  //console.log("hello");
+
   var ts1 = new Date().getTime();
   var hash1 = CryptoJS.MD5(ts1 + PRIV + PUBLIC).toString();
 
@@ -20,13 +20,12 @@ function findCharacter(charactersURI, is3) {
 
   $.getJSON(url1, obj1)
     .done(function(out) {
-    //  console.log(out);
-      //console.log(character);
+
       var output1 = '';
 
     //first one
     if(is3 < 3){
-      console.log("0")
+
       if(out.data.results.length == 0){
         //no characters in given comic
         $('#1').append('<div class="col-sm"><img height:200px style="box-sizing:border-box;height:200px;"'+
@@ -54,7 +53,7 @@ function findCharacter(charactersURI, is3) {
       }
     }
     else if(is3 > 2 && is3 < 6){
-      console.log("3");
+
       if(out.data.results.length == 0){
         //no characters in given comic
         $('#2').append('<div class="col-sm"><img height:200px style="box-sizing:border-box;height:200px;"'+
@@ -82,7 +81,7 @@ function findCharacter(charactersURI, is3) {
       }
     }
     else if(is3 > 5 && is3 < 9){
-      console.log("1");
+
       if(out.data.results.length == 0){
         //no characters in given comic
         $('#3').append('<div class="col-sm"><img height:200px style="box-sizing:border-box;height:200px;"'+
@@ -110,7 +109,7 @@ function findCharacter(charactersURI, is3) {
       }
     }
     else if(is3 == 9){
-      console.log("1");
+
       if(out.data.results.length == 0){
         //no characters in given comic
         $('#4').append('<div class="col-sm"><img height:200px style="box-sizing:border-box;height:200px;"'+
@@ -148,7 +147,7 @@ function findCharacter(charactersURI, is3) {
 }
 
 // skeleton code credit: https://gist.github.com/SiddharthaSarma/eb3f6fb19717fcf84199eda81243bafc
-function findComics(query_year, query_title, query_format, query_sort) {
+function findComics(query_year, query_title, query_format, query_sort, query_offset) {
 
   var ts = new Date().getTime();
   var hash = CryptoJS.MD5(ts + PRIV + PUBLIC).toString();
@@ -163,6 +162,7 @@ function findComics(query_year, query_title, query_format, query_sort) {
   "titleStartsWith": query_title,
   "startYear": query_year,
   "format": query_format,
+  "offset": query_offset
   }
 
   // getting rid of empty values
@@ -176,41 +176,55 @@ function findComics(query_year, query_title, query_format, query_sort) {
 
   $.getJSON(url, obj)
     .done(function(response) {
-      //console.log(response);
+
       var results = response.data.results;
       var output = '<div class="container">';
 
       if(response.data.count == 0){
-      //  console.log("nothing found");
+
         $('#search-container').append('<p> No results found for your query. Please try again! </p>');
       }
       else{
 
-        //console.log("things found");
+
 
         for(i = 0; i < results.length; i++){
-        //  console.log("getting cards");
-        //  console.log(characters.collectionURI);
+
             if(i == 0){
-              //console.log('0');
+
               findCharacter(results[i].characters.collectionURI, i);
             }
             else if(i % 3 == 0){
-            //  console.log('3');
+
               findCharacter(results[i].characters.collectionURI, i);
             }
             else{
-            //  console.log('1');
               findCharacter(results[i].characters.collectionURI, i);
             }
-          //  console.log(output);
+
        }
       }
 
-      $('#search-results').append('</div><nav aria-label="Page navigation example"><ul class="pagination justify-content-center"><li class="page-item disabled">'
-      + '<a class="page-link" href="#" tabindex="-1">Previous</a></li><li class="page-item"><a class="page-link" href="#">1</a></li>'
-      + '<li class="page-item"><a class="page-link" href="#">2</a></li><li class="page-item"><a class="page-link" href="#">3</a></li>'
-      + '<li class="page-item"><a class="page-link" href="#">Next</a></li></ul></nav>');
+      var pagination = '</div>'
+      if(response.data.count > 10){
+        console.log(response.data.count);
+        pagination += '<nav aria-label="Page navigation example"><ul class="pagination justify-content-center">';
+
+        for(i = 0; i < ((response.data.count / 10)); i++){
+
+          var searchParams = new URLSearchParams(window.location.search);
+          searchParams.set("query_offset", 9);
+          var link = searchParams.toString();
+
+          console.log(link);
+
+          pagination += '<li class="page-item"><a class="page-link" href="?'+ link +'">' + (i + 1) + '</a></li>';
+
+        }
+        pagination += '</ul></nav>';
+
+      }
+      $('#search-results').append(pagination);
 
     })
     .fail(function(err){
@@ -234,15 +248,15 @@ function getParameterByName(name, url) {
  $(document).ready(function() {
 
    var url = new URL(window.location.href);
-   //console.log(location.search);
 
    var year1 = url.searchParams.get('query_year'); // "lorem"
    var title1 = url.searchParams.get('query_title'); // "" (present with empty value)
    var format1 = url.searchParams.get('query_format'); // "" (present with no value)
    var sort1 = url.searchParams.get('query_sort');
+   var offset1 = url.searchParams.get('query_offset');
 
    if(location.search != '/' && location.search != ''){
-     findComics(year1, title1, format1, sort1);
+     findComics(year1, title1, format1, sort1, offset1);
    }
 
   document.getElementById('searchMarvel').addEventListener('submit', function (e) {
@@ -252,9 +266,10 @@ function getParameterByName(name, url) {
         var format = '&query_format=' + document.getElementById('query_format').value;
         var sort = '&query_sort=' + document.getElementById('query_sort').value;
 
-        var queryArr = [year, title, format, sort];
+        var off = '&query_offset=0';
 
-        //console.log(queryArr);
+        var queryArr = [year, title, format, sort, off];
+
         for(i=0; i< queryArr.length; i++){
 
           if(queryArr[i].charAt(queryArr[i].length - 1) == '='){
@@ -262,7 +277,6 @@ function getParameterByName(name, url) {
           }
         }
 
-        //console.log(queryArr);
 
       var queryString = '/?q=marvel';
 
