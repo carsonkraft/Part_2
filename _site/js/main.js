@@ -1,6 +1,122 @@
 var PUBLIC = config.PUBLIC_KEY;
 var PRIV = config.PRIV_KEY;
 
+//findCharacter returns character card html
+function findCharacter(charactersURI, is3) {
+
+  console.log("hello");
+  var ts1 = new Date().getTime();
+  var hash1 = CryptoJS.MD5(ts1 + PRIV + PUBLIC).toString();
+
+  var order = "focDate";
+
+  var obj1 = {
+  "ts": ts1,
+  "hash": hash1,
+  "apikey": PUBLIC,
+  }
+
+  var url1 = charactersURI;
+
+  $.getJSON(url1, obj1)
+    .done(function(out) {
+      console.log(out.data.results);
+      //console.log(character);
+      var output1 = '';
+
+    //first one
+    if(is3 == 0){
+      //console.log("0")
+      if(out.data.results.length == 0){
+        //no characters in given comic
+        $('#search-container').append('<div class="row"><div class="col-sm"><img height:200px style="box-sizing:border-box;height:200px;"'+
+        'src="http://getdrawings.com/img/superhero-silhouette-images-30.png"><br>No characters found</div>');
+      }
+      else if (!thumbnail) {
+        var character = out.data.results[0].name;
+        var thumbnail = out.data.results[0].thumbnail;
+        var description = out.data.results[0].description;
+
+        $('#search-container').append('<div class="row"><div class="col-sm"><img height:200px style="box-sizing:border-box;height:200px;"'+
+        'src="http://getdrawings.com/img/superhero-silhouette-images-30.png"><br>' + character
+          + '<br>'+ description + '</div>');
+
+      }
+      else{
+        var character = out.data.results[0].name;
+        var thumbnail = out.data.results[0].thumbnail;
+        var description = out.data.results[0].description;
+
+              $('#search-container').append('<div class="row"><div class="col-sm"><img src="' +
+                thumbnail + '"><br>'+ name + '<br>' + description + '</div>');
+      }
+    }
+
+    // divisible by 3
+    else if(is3 == 3){
+      //console.log("3");
+      if(out.data.results.length == 0){
+        //no characters in given comic
+        $('#search-container').append('</div><div class="row"><div class="col-sm"><img height:200px style="box-sizing:border-box;height:200px;"'+
+        'src="http://getdrawings.com/img/superhero-silhouette-images-30.png"><br>No characters found</div>');
+      }
+      else if (!thumbnail) {
+        var character = out.data.results[0].name;
+        var thumbnail = out.data.results[0].thumbnail;
+        var description = out.data.results[0].description;
+
+        $('#search-container').append('</div><div class="row"><div class="col-sm"><img height:200px style="box-sizing:border-box;height:200px;"'+
+        'src="http://getdrawings.com/img/superhero-silhouette-images-30.png"><br>' + character
+          + '<br>'+ description + '</div>');
+
+      }
+      else{
+        var character = out.data.results[0].name;
+        var thumbnail = out.data.results[0].thumbnail;
+        var description = out.data.results[0].description;
+
+              $('#search-container').append('</div><div class="row"><div class="col-sm"><img src="' +
+                thumbnail + '"><br>'+ name + '<br>' + description + '</div>');
+      }
+    }
+
+    //not divisible by 3
+    else if(is3 == 1){
+      //console.log("1");
+      if(out.data.results.length == 0){
+        //no characters in given comic
+        $('#search-container').append('<div class="col-sm"><img height:200px style="box-sizing:border-box;height:200px;"'+
+        'src="http://getdrawings.com/img/superhero-silhouette-images-30.png"><br>No characters found</div>');
+      }
+      else if (!thumbnail) {
+        var character = out.data.results[0].name;
+        var thumbnail = out.data.results[0].thumbnail;
+        var description = out.data.results[0].description;
+
+        $('#search-container').append('<div class="col-sm"><img height:200px style="box-sizing:border-box;height:200px;"'+
+        'src="http://getdrawings.com/img/superhero-silhouette-images-30.png"><br>' + character
+          + '<br>'+ description + '</div>');
+
+      }
+      else{
+        var character = out.data.results[0].name;
+        var thumbnail = out.data.results[0].thumbnail;
+        var description = out.data.results[0].description;
+
+              $('#search-container').append('<div class="col-sm"><img src="' +
+                thumbnail + '"><br>'+ name + '<br>' + description + '</div>');
+      }
+    }
+
+
+    })
+    .fail(function(err){
+      // the error codes are listed on the dev site
+      console.log(err);
+    });
+
+}
+
 // skeleton code credit: https://gist.github.com/SiddharthaSarma/eb3f6fb19717fcf84199eda81243bafc
 function findComics(query_year, query_title, query_format, query_sort) {
 
@@ -30,60 +146,41 @@ function findComics(query_year, query_title, query_format, query_sort) {
 
   $.getJSON(url, obj)
     .done(function(response) {
+      console.log(response);
       var results = response.data.results;
-
       var output = '<div class="container">';
 
-      if(response.count > 0){
-        output = '<p> No results found for your query. Please try again! </p>';
+      if(response.data.count == 0){
+        console.log("nothing found");
+        $('#search-container').append('<p> No results found for your query. Please try again! </p>');
       }
       else{
 
-        for(i = 0; i < results.length; i++){
+        console.log("things found");
 
-          if(results[i].images.length > 0){
+        for(i = 0; i < results.length; i++){
+        //  console.log("getting cards");
+        //  console.log(characters.collectionURI);
             if(i == 0){
-              output = output + '<div class="row"> <div class="col-sm"><img src="' +
-                results[i].images[0].path + '/standard_xlarge.' + results[i].images[0].extension
-                  + '"><br>'+ results[i].title + '</div>';
+              console.log('0');
+              findCharacter(results[i].characters.collectionURI, 0);
             }
             else if(i % 3 == 0){
-            output = output + '</div><div class="row"> <div class="col-sm"><img src="' +
-              results[i].images[0].path + '/standard_xlarge.' + results[i].images[0].extension
-                + '"><br>'+ results[i].title + '</div>';
+              console.log('3');
+              findCharacter(results[i].characters.collectionURI, 3);
             }
-            else {
-              output = output + '<div class="col-sm"><img src="' +
-                results[i].images[0].path + '/standard_xlarge.' + results[i].images[0].extension
-                  + '"><br>'+ results[i].title + '</div>';
+            else{
+              console.log('1');
+              findCharacter(results[i].characters.collectionURI, 1);
             }
-         }
-         if(results[i].images.length == 0){
-           if(i == 0){
-             output = output + '<div class="row"> <div class="col-sm"><img height:200px style="box-sizing:border-box;height:200px;"'+
-             'src="http://getdrawings.com/img/superhero-silhouette-images-30.png"><br>'
-             + results[i].title + '</div>';
-           }
-           else if(i % 3 == 0){
-             output = output + '</div><div class="row"> <div class="col-sm"><img style="box-sizing:border-box;height:200px;"'+
-             'src="http://getdrawings.com/img/superhero-silhouette-images-30.png"><br>'
-             + results[i].title + '</div>';
-           }
-           else{
-             output = output + '<div class="col-sm"><img height:200px style="box-sizing:border-box;height:200px;"'+
-             'src="http://getdrawings.com/img/superhero-silhouette-images-30.png"><br>'
-             + results[i].title + '</div>';
-           }
-        }
+            console.log(output);
        }
       }
-      output += "</div>"
 
-      //location.reload(true);
-      $('#search-container').append(output + '<nav aria-label="Page navigation example"><ul class="pagination justify-content-center"><li class="page-item disabled">'
+      $('#search-container').append('</div><nav aria-label="Page navigation example"><ul class="pagination justify-content-center"><li class="page-item disabled">'
       + '<a class="page-link" href="#" tabindex="-1">Previous</a></li><li class="page-item"><a class="page-link" href="#">1</a></li>'
-    + '<li class="page-item"><a class="page-link" href="#">2</a></li><li class="page-item"><a class="page-link" href="#">3</a></li>'
-    + '<li class="page-item"><a class="page-link" href="#">Next</a></li></ul></nav>');
+      + '<li class="page-item"><a class="page-link" href="#">2</a></li><li class="page-item"><a class="page-link" href="#">3</a></li>'
+      + '<li class="page-item"><a class="page-link" href="#">Next</a></li></ul></nav>');
 
     })
     .fail(function(err){
@@ -107,7 +204,7 @@ function getParameterByName(name, url) {
  $(document).ready(function() {
 
    var url = new URL(window.location.href);
-   console.log(location.search);
+   //console.log(location.search);
 
    var year1 = url.searchParams.get('query_year'); // "lorem"
    var title1 = url.searchParams.get('query_title'); // "" (present with empty value)
@@ -127,7 +224,7 @@ function getParameterByName(name, url) {
 
         var queryArr = [year, title, format, sort];
 
-        console.log(queryArr);
+        //console.log(queryArr);
         for(i=0; i< queryArr.length; i++){
 
           if(queryArr[i].charAt(queryArr[i].length - 1) == '='){
@@ -135,7 +232,7 @@ function getParameterByName(name, url) {
           }
         }
 
-        console.log(queryArr);
+        //console.log(queryArr);
 
       var queryString = '/?q=marvel';
 
