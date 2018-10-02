@@ -18,7 +18,6 @@ function findComics(query_year, query_title, query_format, query_sort) {
   "startYear": query_year,
   "format": query_format,
   }
-  console.log(obj);
 
   // getting rid of empty values
   for(x in obj){
@@ -89,34 +88,63 @@ function findComics(query_year, query_title, query_format, query_sort) {
     })
     .fail(function(err){
       // the error codes are listed on the dev site
-      console.log(err.status);
       console.log(err);
     });
   };
 
+// https://stackoverflow.com/questions/901115/how-can-i-get-query-string-values-in-javascript
+function getParameterByName(name, url) {
+    if (!url) url = window.location.href;
+    name = name.replace(/[\[\]]/g, '\\$&');
+    var regex = new RegExp('[?&]' + name + '(=([^&#]*)|&|#|$)'),
+        results = regex.exec(url);
+    if (!results) return null;
+    if (!results[2]) return '';
+    return decodeURIComponent(results[2].replace(/\+/g, ' '));
+}
+
 
  $(document).ready(function() {
+
+   var url = new URL(window.location.href);
+   console.log(location.search);
+
+   var year1 = url.searchParams.get('query_year'); // "lorem"
+   var title1 = url.searchParams.get('query_title'); // "" (present with empty value)
+   var format1 = url.searchParams.get('query_format'); // "" (present with no value)
+   var sort1 = url.searchParams.get('query_sort');
+
+   if(location.search != '/' && location.search != ''){
+     findComics(year1, title1, format1, sort1);
+   }
+
   document.getElementById('searchMarvel').addEventListener('submit', function (e) {
     e.preventDefault(); //prevent a submit button from submitting a form.
-        var year = document.getElementById('query_year').value;
-        var title = document.getElementById('query_title').value;
-        var format = document.getElementById('query_format').value;
-        var sort = document.getElementById('query_sort').value;
+        var year = '&query_year=' + document.getElementById('query_year').value;
+        var title = '&query_title=' + document.getElementById('query_title').value;
+        var format = '&query_format=' + document.getElementById('query_format').value;
+        var sort = '&query_sort=' + document.getElementById('query_sort').value;
+
+        var queryArr = [year, title, format, sort];
+
+        console.log(queryArr);
+        for(i=0; i< queryArr.length; i++){
+
+          if(queryArr[i].charAt(queryArr[i].length - 1) == '='){
+            queryArr[i] = '';
+          }
+        }
+
+        console.log(queryArr);
+
+      var queryString = '/?q=marvel';
+
+      for(i=0; i< queryArr.length; i++){
+        queryString += queryArr[i];
+      }
 
         //append URL with queries
-        window.location.search += '&query_year=' + year + '&query_title=' +
-        title + '&query_format=' + format + '&query_sort=' + sort;
+        window.location.assign(queryString);
 
-        var searchArray = window.location.search.split('&');
-
-      //  query_year = searchArray[0].split('=')[1];
-        //query_title = searchArray[1].split('=')[1];
-        //query_format = searchArray[2].split('=')[1];
-        //query_sort = searchArray[3].split('=')[1];
-
-        //findComics(document.getElementById('query_year').value,
-        //document.getElementById('query_title').value,
-      //  document.getElementById('query_format').value,
-      //  document.getElementById('query_sort').value);
 }, false);
 });
