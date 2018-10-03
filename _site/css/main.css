@@ -10,6 +10,15 @@ body{
   color: white;
 }
 
+.navbar p{
+
+  background-color: black;
+  color: white;
+  font-family: 'Roboto';
+  font-size: 14px;
+  margin: 0;
+}
+
 .navbar a{
   color: white;
 }
@@ -22,6 +31,18 @@ padding-top: 10px;
   padding-top: 10px;
 }
 
+.form-control{
+
+  color: #6c757d;
+}
+
+.btn{
+display: block;
+margin-left: auto;
+margin-right: auto;
+
+}
+
 #form-row{
 
   padding-bottom: 7px !important;
@@ -30,6 +51,50 @@ padding-top: 10px;
 #sort-label{
   padding-left: 20px;
 
+}
+
+#search-results{
+
+  margin-left: 20px;
+  margin-right: 20px;
+
+}
+
+.col-sm h3{
+  font-family: 'Oswald';
+  font-size: 16px;
+  text-align: center;
+  color: #999;
+
+}
+
+
+.col-sm {
+
+  background-color: #e0e0e0;
+  border-radius: 20px;
+  margin-left: 5px;
+  margin-right: 5px;
+  font-family: 'Roboto';
+  height: 300px;
+  line-height: 1rem;
+  font-size: 12px;
+
+}
+.col-sm img{
+  height: 30%;
+  display: block;
+  margin-top: 5px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 5px;
+
+}
+
+
+.row{
+
+  margin-bottom: 10px;
 }
 
 .form-text.text-muted{
