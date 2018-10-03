@@ -77,6 +77,15 @@ margin-right: auto;
 
 }
 
+.col-sm h2{
+  font-family: 'Oswald';
+  font-size: 18px;
+  text-align: center;
+  color: black;
+  padding-top: 10px;
+
+}
+
 .col-sm h3{
   font-family: 'Oswald';
   font-size: 16px;
@@ -105,7 +114,7 @@ margin-right: auto;
   margin-left: auto;
   margin-right: auto;
   margin-bottom: 5px;
-
+  box-sizing:border-box;
 }
 
 

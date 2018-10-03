@@ -2,7 +2,7 @@ var PUBLIC = config.PUBLIC_KEY;
 var PRIV = config.PRIV_KEY;
 
 //findCharacter returns character card html
-function findCharacter(charactersURI, is3) {
+function findCharacter(charactersURI, is3, comicTitle) {
 
 
   var ts1 = new Date().getTime();
@@ -23,119 +23,54 @@ function findCharacter(charactersURI, is3) {
 
       var output1 = '';
 
-    //first one
-    if(is3 < 3){
+      var name = '';
+      var path = '';
+      var desciption = '';
+      var ext = '';
+
 
       if(out.data.results.length == 0){
-        //no names in given comic
-        $('#1').append('<div class="col-sm"><img height:200px style="box-sizing:border-box;height:200px;"'+
-        'src="http://getdrawings.com/img/superhero-silhouette-images-30.png"><h3>No characters found</h3></div>');
-      }
-      else if (path == '') {
-        var name = out.data.results[0].name;
-        var path = out.data.results[0].thumbnail.path;
-        var description = out.data.results[0].description;
-        var ext = out.data.results[0].thumbnail.extension;
 
-        $('#1').append('<div class="col-sm"><img height:200px style="box-sizing:border-box;height:200px;"'+
-        'src="http://getdrawings.com/img/superhero-silhouette-images-30.png"><h3>' + name
-          + '</h3>'+ description + '</div>');
-
-      }
-      else{
-        var name = out.data.results[0].name;
-        var path = out.data.results[0].thumbnail.path;
-        var description = out.data.results[0].description;
-        var ext = out.data.results[0].thumbnail.extension;
-
-              $('#1').append('<div class="col-sm"><img src="' +
-                path + '/portrait_medium.' + ext + '"><h3>'+ name + '</h3>' + description + '</div>');
-      }
-    }
-    else if(is3 > 2 && is3 < 6){
-
-      if(out.data.results.length == 0){
         //no characters in given comic
-        $('#2').append('<div class="col-sm"><img height:200px style="box-sizing:border-box;height:200px;"'+
-        'src="http://getdrawings.com/img/superhero-silhouette-images-30.png"><h3>No characters found</h3></div>');
+        output1 += '<div class="col-sm"><h2>'+ comicTitle +'</h2><img"'+
+        'src="http://getdrawings.com/img/superhero-silhouette-images-30.png"><h3>No characters found</h3></div>';
       }
-      else if (path == '') {
-        var name = out.data.results[0].name;
-        var path = out.data.results[0].thumbnail.path;
-        var description = out.data.results[0].description;
-        var ext = out.data.results[0].thumbnail.extension;
+      else  {
+        name = out.data.results[0].name;
+        path = out.data.results[0].thumbnail.path;
+        description = out.data.results[0].description;
+        ext = out.data.results[0].thumbnail.extension;
 
-        $('#2').append('<div class="col-sm"><img height:200px style="box-sizing:border-box;height:200px;"'+
+        if(path == ''){
+        output1 += '<div class="col-sm"><h2>'+ comicTitle +'</h2><img"'+
         'src="http://getdrawings.com/img/superhero-silhouette-images-30.png"><h3>' + name
-          + '</h3>'+ description + '</div>');
+          + '</h3>'+ description + '</div>';
+        }
+        else{
+
+          output1 += '<div class="col-sm"><h2>'+ comicTitle +'</h2><img src="' +
+          path + '/portrait_medium.' + ext + '"><h3>'+ name + '</h3>' + description + '</div>';
+        }
+      }
+
+      if(is3 < 3){
+
+        $('#1').append(output1);
 
       }
-      else{
-        var name = out.data.results[0].name;
-        var path = out.data.results[0].thumbnail.path;
-        var description = out.data.results[0].description;
-        var ext = out.data.results[0].thumbnail.extension;
+      else if(is3 > 2 && is3 < 6){
 
-              $('#2').append('<div class="col-sm"><img src="' +
-                path + '/portrait_medium.' + ext + '"><h3>'+ name + '</h3>' + description + '</div>');
-      }
-    }
-    else if(is3 > 5 && is3 < 9){
-
-      if(out.data.results.length == 0){
-        //no characters in given comic
-        $('#3').append('<div class="col-sm"><img height:200px style="box-sizing:border-box;height:200px;"'+
-        'src="http://getdrawings.com/img/superhero-silhouette-images-30.png"><h3>No characters found</h3></div>');
-      }
-      else if (path == '') {
-        var name = out.data.results[0].name;
-        var path = out.data.results[0].thumbnail.path;
-        var description = out.data.results[0].description;
-        var ext = out.data.results[0].thumbnail.extension;
-
-        $('#3').append('<div class="col-sm"><img height:200px style="box-sizing:border-box;height:200px;"'+
-        'src="http://getdrawings.com/img/superhero-silhouette-images-30.png"><h3>' + name
-          + '</h3>'+ description + '</div>');
+        $('#2').append(output1);
 
       }
-      else{
-        var name = out.data.results[0].name;
-        var path = out.data.results[0].thumbnail.path;
-        var description = out.data.results[0].description;
-        var ext = out.data.results[0].thumbnail.extension;
+      else if(is3 > 5 && is3 < 9){
 
-              $('#3').append('<div class="col-sm"><img src="' +
-                path + '/portrait_medium.' + ext + '"><h3>'+ name + '</h3>' + description + '</div>');
+        $('#3').append(output1);
       }
-    }
-    else if(is3 == 9){
+      else if(is3 == 9){
 
-      if(out.data.results.length == 0){
-        //no characters in given comic
-        $('#4').append('<div class="col-sm"><img height:200px style="box-sizing:border-box;height:200px;"'+
-        'src="http://getdrawings.com/img/superhero-silhouette-images-30.png"><h3>No characters found</h3></div>');
+        $('#4').append(output1);
       }
-      else if (path == '') {
-        var name = out.data.results[0].name;
-        var path = out.data.results[0].thumbnail.path;
-        var description = out.data.results[0].description;
-        var ext = out.data.results[0].thumbnail.extension;
-
-        $('#4').append('<div class="col-sm"><img height:200px style="box-sizing:border-box;height:200px;"'+
-        'src="http://getdrawings.com/img/superhero-silhouette-images-30.png"><h3>' + name
-          + '</h3>'+ description + '</div>');
-
-      }
-      else{
-        var name = out.data.results[0].name;
-        var path = out.data.results[0].thumbnail.path;
-        var description = out.data.results[0].description;
-        var ext = out.data.results[0].thumbnail.extension;
-
-              $('#4').append('<div class="col-sm"><img src="' +
-                path + '/portrait_medium.' + ext + '"><h3>'+ name + '</h3>' + description + '</div>');
-      }
-    }
 
 
     })
@@ -193,14 +128,14 @@ function findComics(query_year, query_title, query_format, query_sort, query_off
 
             if(i == 0){
 
-              findCharacter(results[i].characters.collectionURI, i);
+              findCharacter(results[i].characters.collectionURI, i, results[i].title);
             }
             else if(i % 3 == 0){
 
-              findCharacter(results[i].characters.collectionURI, i);
+              findCharacter(results[i].characters.collectionURI, i, results[i].title);
             }
             else{
-              findCharacter(results[i].characters.collectionURI, i);
+              findCharacter(results[i].characters.collectionURI, i, results[i].title);
             }
 
        }
@@ -260,16 +195,6 @@ function findComics(query_year, query_title, query_format, query_sort, query_off
     });
   };
 
-// https://stackoverflow.com/questions/901115/how-can-i-get-query-string-values-in-javascript
-function getParameterByName(name, url) {
-    if (!url) url = window.location.href;
-    name = name.replace(/[\[\]]/g, '\\$&');
-    var regex = new RegExp('[?&]' + name + '(=([^&#]*)|&|#|$)'),
-        results = regex.exec(url);
-    if (!results) return null;
-    if (!results[2]) return '';
-    return decodeURIComponent(results[2].replace(/\+/g, ' '));
-}
 
 
  $(document).ready(function() {
