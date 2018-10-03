@@ -57,7 +57,7 @@ function findCharacter(charactersURI, is3) {
       if(out.data.results.length == 0){
         //no characters in given comic
         $('#2').append('<div class="col-sm"><img height:200px style="box-sizing:border-box;height:200px;"'+
-        'src="http://getdrawings.com/img/superhero-silhouette-images-30.png"></h3>No characters found<h3></div>');
+        'src="http://getdrawings.com/img/superhero-silhouette-images-30.png"><h3>No characters found</h3></div>');
       }
       else if (path == '') {
         var name = out.data.results[0].name;
@@ -113,7 +113,7 @@ function findCharacter(charactersURI, is3) {
       if(out.data.results.length == 0){
         //no characters in given comic
         $('#4').append('<div class="col-sm"><img height:200px style="box-sizing:border-box;height:200px;"'+
-        'src="http://getdrawings.com/img/superhero-silhouette-images-30.png"><h3>No characters found</div></h3>');
+        'src="http://getdrawings.com/img/superhero-silhouette-images-30.png"><h3>No characters found</h3></div>');
       }
       else if (path == '') {
         var name = out.data.results[0].name;
@@ -187,7 +187,7 @@ function findComics(query_year, query_title, query_format, query_sort, query_off
       }
       else{
 
-
+        $('#search-results').prepend('<p id="resultCount">' + response.data.total + ' Results </p>');
 
         for(i = 0; i < results.length; i++){
 

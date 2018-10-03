@@ -27,9 +27,26 @@ body{
 padding-top: 10px;
 
 }
+
+#resultCount {
+padding-top: 10px;
+font-family: 'Roboto';
+font-size: 14px;
+color: #999;
+margin-left: 10px;
+margin-bottom: 0;
+
+}
+
+
 #search {
   padding-top: 10px;
 }
+.mb-5, .my-5 {
+    margin-bottom: 1rem!important;
+}
+
+
 
 .form-control{
 
