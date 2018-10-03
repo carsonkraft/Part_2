@@ -28,12 +28,12 @@ function findCharacter(charactersURI, is3, comicTitle) {
       var desciption = '';
       var ext = '';
 
+      var fillImg = "http://getdrawings.com/img/superhero-silhouette-images-30.png";
 
       if(out.data.results.length == 0){
 
         //no characters in given comic
-        output1 += '<div class="col-sm"><h2>'+ comicTitle +'</h2><img"'+
-        'src="http://getdrawings.com/img/superhero-silhouette-images-30.png"><h3>No characters found</h3></div>';
+        output1 += '<div class="col-sm"><h2>'+ comicTitle +'</h2><img src="' + fillImg + '"><h3>No characters found</h3></div>';
       }
       else  {
         name = out.data.results[0].name;
@@ -42,8 +42,7 @@ function findCharacter(charactersURI, is3, comicTitle) {
         ext = out.data.results[0].thumbnail.extension;
 
         if(path == ''){
-        output1 += '<div class="col-sm"><h2>'+ comicTitle +'</h2><img"'+
-        'src="http://getdrawings.com/img/superhero-silhouette-images-30.png"><h3>' + name
+        output1 += '<div class="col-sm"><h2>'+ comicTitle +'</h2><img src="' + fillImg + '"><h3>' + name
           + '</h3>'+ description + '</div>';
         }
         else{
