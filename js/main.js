@@ -105,7 +105,6 @@ function findCharacter(charactersURI, is3, comicTitle) {
 
 }
 
-// skeleton code credit: https://gist.github.com/SiddharthaSarma/eb3f6fb19717fcf84199eda81243bafc
 function findComics(query_year, query_title, query_format, query_sort, query_offset) {
 
   var ts = new Date().getTime();
@@ -222,6 +221,23 @@ function findComics(query_year, query_title, query_format, query_sort, query_off
 
 
  $(document).ready(function() {
+
+// date dropdown credit: https://stackoverflow.com/questions/19731767/to-generate-years-automatically-in-javascript-dropdown
+   var max = new Date().getFullYear(),
+   min = 1939;
+   var select = document.getElementById("query_year");
+
+   var opt = document.createElement('option');
+   opt.value = '';
+   opt.innerHTML = 'Any Year';
+   select.appendChild(opt);
+
+   for (var i = max; i>=min; i--){
+      opt = document.createElement('option');
+      opt.value = i;
+      opt.innerHTML = i;
+      select.appendChild(opt);
+   }
 
    var url = new URL(window.location.href);
 

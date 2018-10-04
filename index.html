@@ -39,7 +39,8 @@
     About
   </button>
   <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-    <p> Welcome! This is a site made by Carson for W4170. Search the Marvel API for comics below. (Hint: Click "Advanced +" for more options!)</p>
+    <p> Welcome! This is a site made by Carson for W4170.<br>Search the Marvel API for comics below!</p>
+    <small class="form-text text-muted"> (Hint: For more options, click "Advanced" on search bar)</small>
   </div>
 </div>
 
@@ -62,8 +63,9 @@
 
             <div class="row" id="form-row">
               <div class="col">
-                <input class="form-control" id="query_year" placeholder="Start Year">
-                <small id="titleHelp" class="form-text text-muted">(Example: 1995)</small>
+                <select class="form-control" type="year" id="query_year" placeholder="Start Year">
+                </select>
+                <small id="titleHelp" class="form-text text-muted">Enter a series start date</small>
               </div>
 
               <div class="col">
