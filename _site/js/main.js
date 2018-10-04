@@ -233,15 +233,18 @@ function findComics(query_year, query_title, query_format, query_sort, query_off
 
   if(year1){
    document.getElementById("query_year").value = year1;
+   more(this);
   }
   if(title1){
    document.getElementById("query_title").value = title1;
   }
   if(format1){
    document.getElementById("query_format").value = format1;
+   more(this);
   }
   if(sort1){
    document.getElementById("query_sort").value = sort1;
+   more(this);
   }
 
 
@@ -266,6 +269,7 @@ function findComics(query_year, query_title, query_format, query_sort, query_off
             queryArr[i] = '';
           }
         }
+
 
 
       var queryString = '/?q=marvel';
