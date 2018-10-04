@@ -254,32 +254,35 @@ function findComics(query_year, query_title, query_format, query_sort, query_off
 
   document.getElementById('searchMarvel').addEventListener('submit', function (e) {
     e.preventDefault(); //prevent a submit button from submitting a form.
-        var year = '&query_year=' + document.getElementById('query_year').value;
-        var title = '&query_title=' + document.getElementById('query_title').value;
-        var format = '&query_format=' + document.getElementById('query_format').value;
-        var sort = '&query_sort=' + document.getElementById('query_sort').value;
+        var year = document.getElementById('query_year').value;
+        var title = document.getElementById('query_title').value;
+        var format = document.getElementById('query_format').value;
+        var sort = document.getElementById('query_sort').value;
 
-        var off = '&query_offset=0';
+      var searchParams = new URLSearchParams(window.location.search);
+      if(year){
 
-        var queryArr = [year, title, format, sort, off];
-
-        for(i=0; i< queryArr.length; i++){
-
-          if(queryArr[i].charAt(queryArr[i].length - 1) == '='){
-            queryArr[i] = '';
-          }
-        }
-
-
-
-      var queryString = '/?q=marvel';
-
-      for(i=0; i< queryArr.length; i++){
-        queryString += queryArr[i];
+        searchParams.set('query_year', year);
       }
 
-        //append URL with queries
-        window.location.assign(queryString);
+      if(title){
+
+        searchParams.set('query_year', title);
+      }
+
+      if(format){
+
+        searchParams.set('query_year', format);
+      }
+
+      if(sort){
+
+        searchParams.set('query_year', sort);
+      }
+
+      searchParams.set('query_offset', 0);
+
+        window.location.assign('?' + searchParams.toString());
 
 }, false);
 });

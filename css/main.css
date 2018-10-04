@@ -1,6 +1,6 @@
 body{
 
-  font-family: 'Oswald', sans-serif;
+  font-family: 'Oswald', sans-serif !important;
 
 }
 
@@ -31,7 +31,7 @@ margin-bottom: 0;
 
 
 #search {
-  padding-top: 10px;
+  padding-top: 10px !important;
 }
 .mb-5, .my-5 {
     margin-bottom: 1rem!important;
@@ -41,13 +41,13 @@ margin-bottom: 0;
 
 .form-control{
 
-  color: black;
+  color: black !important;
 }
 
 .btn{
-display: block;
-margin-left: auto;
-margin-right: auto;
+display: block !important;
+margin-left: auto !important;
+margin-right: auto !important;
 
 }
 
@@ -57,8 +57,8 @@ margin-right: auto;
 }
 
 #sortRow{
-  margin-left: auto;
-  margin-right: auto;
+  margin-left: auto !important;
+  margin-right: auto !important;
 
 }
 #sort-label{
@@ -76,7 +76,7 @@ margin-right: auto;
 }
 
 .col-sm h2{
-  font-family: 'Oswald';
+  font-family: 'Oswald' !important;
   font-size: 18px;
   text-align: center;
   color: black;
@@ -150,44 +150,44 @@ padding-bottom: 10px;
 }
 
 .form-group{
-  margin-bottom: 0;
+  margin-bottom: 0 !important;
 }
 
 .btn-primary{
-  color: #fff;
-  background-color: #ec1d23;
-  border-color: #ec1d23;
-  margin-top: 5px;
+  color: #fff !important;
+  background-color: #ec1d23 !important;
+  border-color: #ec1d23 !important;
+  margin-top: 5px !important;
 }
 
 .btn-primary:hover{
   color: #fff;
-  background-color: #bd2e32;
-  border-color: #bd2e32;
+  background-color: #bd2e32 !important;
+  border-color: #bd2e32 !important;
 }
 
 .btn-primary:active{
   color: #fff;
-  background-color: #bd2e32;
-  border-color: #bd2e32;
+  background-color: #bd2e32 !important;
+  border-color: #bd2e32 !important;
 }
 
 .btn-secondary{
-  background-color: #22262a;
+  background-color: #22262a !important;
 
 }
 .btn-secondary:hover{
-  background-color: #383d41;
+  background-color: #383d41 !important;
 }
 
 .btn-secondary:not(:disabled):not(.disabled).active, .btn-secondary:not(:disabled):not(.disabled):active, .show>.btn-secondary.dropdown-toggle{
-background-color: #383d41;
+background-color: #383d41 !important;
 
 }
 
 .btn-secondary:active{
-  background-color: #383d41;
-  border: #bd2e32;
+  background-color: #383d41 !important;
+  border: #bd2e32 !important;
 }
 .btn-secondary:focus{
 
@@ -196,7 +196,7 @@ background-color: #383d41;
 .dropdown-menu{
 
   margin-top: 5px;
-  left: -90px;
+  left: -90px !important;
   background-color: white;
   color: #383d41;
   border: none;
