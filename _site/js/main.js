@@ -1,6 +1,18 @@
 var PUBLIC = config.PUBLIC_KEY;
 var PRIV = config.PRIV_KEY;
 
+function more(obj) {
+    var content = document.getElementById("showMore");
+
+    if (content.style.display == "none") {
+        content.style.display = "";
+        obj.innerHTML = "-";
+    } else {
+        content.style.display = "none";
+        obj.innerHTML = "+";
+    }
+}
+
 //findCharacter returns character card html
 function findCharacter(charactersURI, is3, comicTitle) {
 
@@ -21,11 +33,13 @@ function findCharacter(charactersURI, is3, comicTitle) {
   $.getJSON(url1, obj1)
     .done(function(out) {
 
+      console.log(out);
+
       var output1 = '';
 
       var name = '';
       var path = '';
-      var desciption = '';
+      var description = '';
       var ext = '';
 
       var fillImg = "http://getdrawings.com/img/superhero-silhouette-images-30.png";
@@ -33,22 +47,32 @@ function findCharacter(charactersURI, is3, comicTitle) {
       if(out.data.results.length == 0){
 
         //no characters in given comic
-        output1 += '<div class="col-sm"><h2>'+ comicTitle +'</h2><img src="' + fillImg + '"><h3>No characters found</h3></div>';
+        output1 += '<div class="col-sm"><h2>'+ comicTitle +'</h2><img class="noChar" src="'
+        + fillImg + '"></div>';
       }
-      else  {
+      else {
         name = out.data.results[0].name;
         path = out.data.results[0].thumbnail.path;
         description = out.data.results[0].description;
         ext = out.data.results[0].thumbnail.extension;
 
-        if(path == ''){
-        output1 += '<div class="col-sm"><h2>'+ comicTitle +'</h2><img src="' + fillImg + '"><h3>' + name
-          + '</h3>'+ description + '</div>';
+        if(path == '' && description == ""){
+          output1 += '<div class="col-sm"><h2>'+ comicTitle +'</h2><img class="noChar" src="' + fillImg + '"><h3>' + name
+            + '</h3></div>';
+        }
+        else if(path == ''){
+        output1 += '<div class="col-sm"><h2>'+ comicTitle +'</h2><div class="row"><div class="col-4"><img src="' + fillImg + '"><h3>' + name
+          + '</div><div class="col-8"></h3><p>'+ description + '</p></div></div></div>';
+        }
+        else if(description == ""){
+          output1 += '<div class="col-sm"><h2>'+ comicTitle +'</h2><img class="noChar" src="' +
+          path + '/portrait_medium.' + ext + '"><h3>' + name
+            + '</h3></div>';
         }
         else{
 
-          output1 += '<div class="col-sm"><h2>'+ comicTitle +'</h2><img src="' +
-          path + '/portrait_medium.' + ext + '"><h3>'+ name + '</h3>' + description + '</div>';
+          output1 += '<div class="col-sm"><h2>'+ comicTitle +'</h2><div class="row"><div class="col-4"><img src="' +
+          path + '/portrait_medium.' + ext + '"></div><div class="col-8"><h3>'+ name + '</h3><p>' + description + '</p></div></div></div>';
         }
       }
 

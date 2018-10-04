@@ -65,8 +65,15 @@ margin-right: auto;
   padding-bottom: 7px !important;
 }
 
+#sortRow{
+  margin-left: auto;
+  margin-right: auto;
+
+}
 #sort-label{
   padding-left: 20px;
+  padding-right: 0;
+  max-width: 10%;
 
 }
 
@@ -107,15 +114,27 @@ margin-right: auto;
   font-size: 12px;
 
 }
-.col-sm img{
-  height: 30%;
-  display: block;
-  margin-top: 5px;
-  margin-left: auto;
-  margin-right: auto;
-  margin-bottom: 5px;
-  box-sizing:border-box;
+
+.col-sm.filler{
+background-color: white;
+
 }
+
+.col-sm img{
+  display: block;
+  margin-top: 20px;
+  box-sizing:border-box;
+  max-width: 100px;
+}
+
+.noChar {
+display: block;
+margin-left: auto;
+margin-right: auto;
+padding-bottom: 10px;
+
+}
+
 
 
 .row{
