@@ -7,6 +7,7 @@
   <meta name="description" content="">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <!-- Place favicon.ico in the root directory -->
+  <link rel="icon" type="image/png" href="icon.png">
 
   <link rel="stylesheet" href="../css/normalize.css">
   <link rel="stylesheet" href="../css/main.css">
@@ -20,6 +21,7 @@
   <script src="http://crypto-js.googlecode.com/svn/tags/3.0.2/build/components/enc-base64-min.js">
   </script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.2/rollups/aes.js"></script>
+
 </head>
 
 <body>
@@ -32,6 +34,16 @@
       <img src="http://thetechnews.com/wp-content/uploads/2018/03/2_The-latest-Marvel-logo.jpg" height="30" alt="">
       Comic Search
     </a>
+
+    <div class="dropdown">
+  <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    About
+  </button>
+  <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+    <p> Welcome! This is a site made by Carson for W4170. Search the Marvel API for comics below. (Hint: Click "Advanced +" for more options!)</p>
+  </div>
+</div>
+
   </nav>
 </header>
 
@@ -45,14 +57,14 @@
               <small id="titleHelp" class="form-text text-muted">Enter a comic title or beginning of title</small>
             </div>
 
-          <a href="#" onclick="more(this);">Advanced Options</a>
+          <a href="#" onclick="more(this);">Advanced +</a>
 
-          <label id="showMore" style="display: none;">
+          <div id="showMore" style="display: none;">
 
             <div class="row" id="form-row">
               <div class="col">
                 <input class="form-control" id="query_year" placeholder="Start Year">
-                <small id="titleHelp" class="form-text text-muted">Enter a series start year</small>
+                <small id="titleHelp" class="form-text text-muted">(Example: 1995)</small>
               </div>
 
               <div class="col">
@@ -81,8 +93,8 @@
             </div>
               </div>
 
-          </label>
-            <button type="submit" class="btn btn-primary">Search</button>
+          </div>
+            <button type="submit" class="btn btn-primary">SEARCH</button>
           </form>
         </div>
     </div>
@@ -101,5 +113,7 @@
     <script type='text/javascript' src='config.js'></script>
     <script src="js/plugins.js"></script>
     <script src="js/main.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 </body>
 </div>

@@ -6,17 +6,8 @@ body{
 
 .navbar{
 
-  background-color: black;
+  background-color: #22262a;
   color: white;
-}
-
-.navbar p{
-
-  background-color: black;
-  color: white;
-  font-family: 'Roboto';
-  font-size: 14px;
-  margin: 0;
 }
 
 .navbar a{
@@ -50,7 +41,7 @@ margin-bottom: 0;
 
 .form-control{
 
-  color: #6c757d;
+  color: black;
 }
 
 .btn{
@@ -127,6 +118,14 @@ background-color: white;
   max-width: 100px;
 }
 
+.row a{
+
+  font-family: 'Roboto';
+  font-size: 12px;
+  padding-left: 2px;
+
+}
+
 .noChar {
 display: block;
 margin-left: auto;
@@ -146,21 +145,70 @@ padding-bottom: 10px;
   padding-left: 5px;
   font-family: Arial, Helvetica, sans-serif;
   color: black !important;
+  margin-top: 0;
 
 }
 
 .form-group{
-  margin-bottom: .5rem;
+  margin-bottom: 0;
 }
 
 .btn-primary{
   color: #fff;
   background-color: #ec1d23;
   border-color: #ec1d23;
+  margin-top: 5px;
 }
 
 .btn-primary:hover{
   color: #fff;
   background-color: #bd2e32;
   border-color: #bd2e32;
+}
+
+.btn-primary:active{
+  color: #fff;
+  background-color: #bd2e32;
+  border-color: #bd2e32;
+}
+
+.btn-secondary{
+  background-color: #22262a;
+
+}
+.btn-secondary:hover{
+  background-color: #383d41;
+}
+
+.btn-secondary:not(:disabled):not(.disabled).active, .btn-secondary:not(:disabled):not(.disabled):active, .show>.btn-secondary.dropdown-toggle{
+background-color: #383d41;
+
+}
+
+.btn-secondary:active{
+  background-color: #383d41;
+  border: #bd2e32;
+}
+.btn-secondary:focus{
+
+  box-shadow: none !important;
+}
+.dropdown-menu{
+
+  margin-top: 5px;
+  left: -90px;
+  background-color: white;
+  color: #383d41;
+  border: none;
+  font-family: "Roboto";
+  font-size: 14px;
+  border: none;
+  box-shadow: 0 .5rem 1rem rgba(0,0,0,.15)!important;
+
+}
+
+.dropdown-menu p{
+
+  margin-left: 5px;
+
 }

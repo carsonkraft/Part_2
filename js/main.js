@@ -1,15 +1,16 @@
 var PUBLIC = config.PUBLIC_KEY;
 var PRIV = config.PRIV_KEY;
 
+//credit: https://stackoverflow.com/questions/16779244/hide-show-advanced-option-using-javascript
 function more(obj) {
     var content = document.getElementById("showMore");
 
     if (content.style.display == "none") {
         content.style.display = "";
-        obj.innerHTML = "-";
+        obj.innerHTML = "Advanced -";
     } else {
         content.style.display = "none";
-        obj.innerHTML = "+";
+        obj.innerHTML = "Advanced +";
     }
 }
 
@@ -229,6 +230,20 @@ function findComics(query_year, query_title, query_format, query_sort, query_off
    var format1 = url.searchParams.get('query_format'); // "" (present with no value)
    var sort1 = url.searchParams.get('query_sort');
    var offset1 = url.searchParams.get('query_offset');
+
+  if(year1){
+   document.getElementById("query_year").value = year1;
+  }
+  if(title1){
+   document.getElementById("query_title").value = title1;
+  }
+  if(format1){
+   document.getElementById("query_format").value = format1;
+  }
+  if(sort1){
+   document.getElementById("query_sort").value = sort1;
+  }
+
 
    if(location.search != '/' && location.search != ''){
      findComics(year1, title1, format1, sort1, offset1);
